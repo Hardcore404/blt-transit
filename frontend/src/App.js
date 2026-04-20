@@ -134,20 +134,19 @@ function App() {
       id: Date.now()
     };
 
-    await axios.post("https://blt-transit.onrender.com", ticket);
-    setShowPayment(false);
-    loadData();
-  };
+   await axios.post("https://blt-transit.onrender.com/book", ticket);
+setShowPayment(false);
+loadData();
 
-  const loadData = async () => {
-    const res = await axios.get("https://blt-transit.onrender.com");
-    setData(res.data);
-  };
+const loadData = async () => {
+  const res = await axios.get("https://blt-transit.onrender.com/dashboard");
+  setData(res.data);
+};
 
-  const deleteBooking = async (i) => {
-    await axios.delete(`https://blt-transit.onrender.com/${i}`);
-    loadData();
-  };
+const deleteBooking = async (i) => {
+  await axios.delete(`https://blt-transit.onrender.com/delete/${i}`);
+  loadData();
+};
 
   return (
     <div style={{ fontFamily: "Arial", background: "#eef2f7", minHeight: "100vh" }}>
@@ -255,4 +254,4 @@ const modalStyle = { position:"fixed", top:0, left:0, width:"100%", height:"100%
 const modalBox = { background:"white", padding:"20px", borderRadius:"10px", width:"300px" };
 const ticketStyle = { background:"white", margin:"10px auto", width:"320px", padding:"10px", borderRadius:"10px" };
 
-export default App;
+export default App;}
