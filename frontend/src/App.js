@@ -189,7 +189,15 @@ function App() {
 
               <p>Total: ₱{getFinalFare()}</p>
 
-              <button onClick={confirmPayment} style={buttonStyle}>Pay</button>
+              <button 
+  onClick={() => {
+    console.log("PAY CLICKED");
+    confirmPayment();
+  }} 
+  style={buttonStyle}
+>
+  Pay Now
+</button>
               <button onClick={()=>setShowPayment(false)} style={deleteStyle}>Cancel</button>
             </div>
           </div>
