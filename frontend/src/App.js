@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Map from "./Map";
+const inputStyle = { width:"100%", padding:"10px", margin:"8px 0" };
+const buttonStyle = { width:"100%", padding:"10px", background:"#1e3a8a", color:"white", border:"none" };
+const deleteStyle = { background:"red", color:"white", padding:"8px", border:"none" };
+const modalStyle = { position:"fixed", top:0, left:0, width:"100%", height:"100%", background:"rgba(0,0,0,0.5)", display:"flex", justifyContent:"center", alignItems:"center" };
+const modalBox = { background:"white", padding:"20px", borderRadius:"10px", width:"300px" };
+const ticketStyle = { background:"white", margin:"10px auto", width:"320px", padding:"10px", borderRadius:"10px" };
 
 function App() {
   const [name, setName] = useState("");
@@ -99,23 +105,6 @@ function App() {
   }
 
   try {
-    const ticket = {
-      name,
-      route: `${start} → ${end}`,
-      date,
-      time,
-      seat,
-      payment,
-      fare: getFinalFare(),
-      id: Date.now()
-    };
-
-    await axios.post("https://blt-transit.onrender.com/book", ticket);
-
-    alert("✅ Payment successful!");
-
-    setShowPayment(false);
-    loadData();
 
   } catch (error) {
     console.error(error);
@@ -246,12 +235,5 @@ const deleteBooking = async (i) => {
     </div>
   );
 
-
-const inputStyle = { width:"100%", padding:"10px", margin:"8px 0" };
-const buttonStyle = { width:"100%", padding:"10px", background:"#1e3a8a", color:"white", border:"none" };
-const deleteStyle = { background:"red", color:"white", padding:"8px", border:"none" };
-const modalStyle = { position:"fixed", top:0, left:0, width:"100%", height:"100%", background:"rgba(0,0,0,0.5)", display:"flex", justifyContent:"center", alignItems:"center" };
-const modalBox = { background:"white", padding:"20px", borderRadius:"10px", width:"300px" };
-const ticketStyle = { background:"white", margin:"10px auto", width:"320px", padding:"10px", borderRadius:"10px" };
 
 export default App;}
