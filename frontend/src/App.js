@@ -91,10 +91,37 @@ function App() {
   };
 
   const confirmPayment = async () => {
-    if (!payment) {
-      alert("Select payment!");
-      return;
-    }
+  console.log("CONFIRM PAYMENT RUNNING");
+
+  if (!payment) {
+    alert("⚠️ Please select a payment method!");
+    return;
+  }
+
+  try {
+    const ticket = {
+      name,
+      route: `${start} → ${end}`,
+      date,
+      time,
+      seat,
+      payment,
+      fare: getFinalFare(),
+      id: Date.now()
+    };
+
+    await axios.post("https://blt-transit.onrender.com/book", ticket);
+
+    alert("✅ Payment successful!");
+
+    setShowPayment(false);
+    loadData();
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Payment failed. Backend error.");
+  }
+};
 
     const ticket = {
       name,
@@ -219,7 +246,7 @@ function App() {
       </div>
     </div>
   );
-}
+
 
 const inputStyle = { width:"100%", padding:"10px", margin:"8px 0" };
 const buttonStyle = { width:"100%", padding:"10px", background:"#1e3a8a", color:"white", border:"none" };
