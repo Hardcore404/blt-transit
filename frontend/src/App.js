@@ -107,7 +107,7 @@ function App() {
       id: Date.now()
     };
 
-    await axios.post("http://localhost:5000/book", ticket);
+    await axios.post("https://blt-transit.onrender.com", ticket);
     setShowPayment(false);
     loadData();
   };
