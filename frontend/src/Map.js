@@ -72,7 +72,7 @@ function Map({ selectedRoute, setStart, setEnd }) {
   const routeCoords = routeStations.map(s => s.coords);
 
   const [position, setPosition] = useState(null);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (routeCoords.length === 0) return;
 
