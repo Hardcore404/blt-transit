@@ -12,6 +12,8 @@ function App() {
   const [payment, setPayment] = useState("");
   const [showPayment, setShowPayment] = useState(false);
   const [data, setData] = useState([]);
+  const confirmPayment = async () => {
+  console.log("FUNCTION RUNNING", payment);
 
   const stations = [
     "PMA","T.I","Camp John Hay","Nevada Square","Victory Liner",
@@ -180,16 +182,28 @@ function App() {
             <div style={modalBox}>
               <h3>Payment</h3>
 
-              <select onChange={e=>setPayment(e.target.value)} style={inputStyle}>
-                <option>Select Method</option>
-                <option>GCash</option>
-                <option>Credit Card</option>
-                <option>Cash</option>
-              </select>
+              <select 
+  value={payment}
+  onChange={(e)=>setPayment(e.target.value)} 
+  style={inputStyle}
+>
+  <option value="">Select Method</option>
+  <option value="GCash">GCash</option>
+  <option value="Card">Credit Card</option>
+  <option value="Cash">Cash</option>
+</select>
 
               <p>Total: ₱{getFinalFare()}</p>
 
-              <button onClick={confirmPayment} style={buttonStyle}>Pay</button>
+              <button 
+  onClick={() => {
+    console.log("PAY CLICKED");
+    confirmPayment();
+  }} 
+  style={buttonStyle}
+>
+  Pay
+</button>
               <button onClick={()=>setShowPayment(false)} style={deleteStyle}>Cancel</button>
             </div>
           </div>
