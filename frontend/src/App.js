@@ -107,18 +107,18 @@ function App() {
       id: Date.now()
     };
 
-    await axios.post("http://localhost:5000/book", ticket);
+    await axios.post("https://blt-transit.onrender.com/book", ticket);
     setShowPayment(false);
     loadData();
   };
 
   const loadData = async () => {
-    const res = await axios.get("http://localhost:5000/dashboard");
+    const res = await axios.get("https://blt-transit.onrender.com/dashboard");
     setData(res.data);
   };
 
   const deleteBooking = async (i) => {
-    await axios.delete(`http://localhost:5000/delete/${i}`);
+    await axios.delete(`https://blt-transit.onrender.com/delete/${i}`);
     loadData();
   };
 
