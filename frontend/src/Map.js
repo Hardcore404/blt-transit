@@ -8,7 +8,6 @@ function Routing({ start, end }) {
 useEffect(() => {
 if (!start || !end) return;
 
-```
 const routing = L.Routing.control({
   waypoints: [
     L.latLng(start[0], start[1]),
@@ -17,13 +16,33 @@ const routing = L.Routing.control({
   routeWhileDragging: false,
   addWaypoints: false,
   draggableWaypoints: false,
-  createMarker: () => null, // remove default markers
+
+  // 🎯 HIDE PANEL
+  show: false,
+
+  // 🎨 STYLE ROUTE
+  lineOptions: {
+    styles: [
+      { color: "#1e3a8a", weight: 6 },
+      { color: "#3b82f6", weight: 3 }
+    ]
+  },
+
+  // 🚫 REMOVE DEFAULT MARKERS
+  createMarker: () => null,
+
+  // 🧠 BETTER ROUTING
+  router: L.Routing.osrmv1({
+    serviceUrl: "https://router.project-osrm.org/route/v1"
+  })
+
 }).addTo(window.map);
 
 return () => {
-  window.map.removeControl(routing);
+  if (window.map && routing) {
+    window.map.removeControl(routing);
+  }
 };
-```
 
 }, [start, end]);
 
@@ -76,7 +95,7 @@ whenCreated={(map) => (window.map = map)}
     <Routing start={startStation.coords} end={endStation.coords} />
   )}
 </MapContainer>
-```
+
 
 );
 }
