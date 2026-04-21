@@ -3,6 +3,8 @@ import axios from "axios";
 import Map from "./Map";
 
 function App() {
+const [showBooking, setShowBooking] = useState(false);
+
 const [name, setName] = useState("");
 const [start, setStart] = useState("");
 const [end, setEnd] = useState("");
@@ -30,8 +32,8 @@ const schedule = [
 const seats = Array.from({ length: 20 }, (_, i) => `Seat ${i + 1}`);
 
 useEffect(() => {
-loadData();
-}, []);
+if (showBooking) loadData();
+}, [showBooking]);
 
 const calculateFare = () => {
 if (!start || !end) return 0;
@@ -74,6 +76,7 @@ try {
   };
 
   await axios.post("https://blt-transit.onrender.com/book", ticket);
+  alert("Ticket booked!");
   loadData();
 
 } catch (error) {
@@ -93,26 +96,43 @@ await axios.delete(`https://blt-transit.onrender.com/delete/${i}`);
 loadData();
 };
 
-return (
-<div style={{
-minHeight: "100vh",
-background: "linear-gradient(135deg, #1e3a8a, #3b82f6)",
-paddingBottom: "40px"
-}}>
+// 🎯 LANDING PAGE
+if (!showBooking) {
+return ( <div style={landingStyle}>
+<h1 style={{ fontSize: "40px" }}>🚆 BLT TRANSIT</h1>
 
 ```
-  <h1 style={{
-    textAlign: "center",
-    color: "white",
-    padding: "20px",
-    animation: "fadeIn 1s ease"
-  }}>
-    🚆 BLT TRANSIT
-  </h1>
+    <p style={{ maxWidth: "500px", margin: "20px auto" }}>
+      BLT Transit is a smart train transportation system designed to connect 
+      Baguio City to La Trinidad. It provides efficient, fast, and reliable 
+      travel across major tourist destinations and stations.
+    </p>
 
+    <h3>🚄 Train System</h3>
+    <p>Modern rail system with scheduled departures and seat management.</p>
+
+    <h3>📍 Coverage</h3>
+    <p>Baguio City → La Trinidad tourist routes and key locations.</p>
+
+    <button 
+      onClick={() => setShowBooking(true)} 
+      style={buttonStyle}
+    >
+      Book Now
+    </button>
+  </div>
+);
+```
+
+}
+
+// 🎫 BOOKING PAGE
+return ( <div style={mainStyle}>
+<h1 style={{ textAlign: "center", color: "white" }}>🚆 BLT TRANSIT</h1>
+
+```
   <Map selectedRoute={{ start, end }} setStart={setStart} setEnd={setEnd} />
 
-  {/* Booking Card */}
   <div style={cardStyle}>
     <input placeholder="Name" onChange={e=>setName(e.target.value)} style={inputStyle}/>
 
@@ -138,14 +158,14 @@ paddingBottom: "40px"
       {seats.map((s,i)=><option key={i}>{s}</option>)}
     </select>
 
-    <p style={{ fontWeight: "bold" }}>₱{calculateFare()}</p>
+    <p>₱{calculateFare()}</p>
 
     <button onClick={bookTicket} style={buttonStyle}>
       Book Ticket
     </button>
   </div>
 
-  <h2 style={{ textAlign: "center", color: "white" }}>🎫 Bookings</h2>
+  <h2 style={{ textAlign: "center", color: "white" }}>Bookings</h2>
 
   {data.map((d,i)=>(
     <div key={i} style={ticketStyle}>
@@ -160,47 +180,49 @@ paddingBottom: "40px"
       </button>
     </div>
   ))}
-
-  <style>{`
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  `}</style>
-
 </div>
 ```
 
 );
 }
 
+// 🎨 STYLES
+const landingStyle = {
+minHeight: "100vh",
+textAlign: "center",
+background: "linear-gradient(135deg, #1e3a8a, #3b82f6)",
+color: "white",
+paddingTop: "100px"
+};
+
+const mainStyle = {
+minHeight: "100vh",
+background: "linear-gradient(135deg, #1e3a8a, #3b82f6)",
+paddingBottom: "40px"
+};
+
 const cardStyle = {
 background: "white",
 padding: "20px",
 width: "340px",
 margin: "20px auto",
-borderRadius: "15px",
-boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
-transition: "0.3s"
+borderRadius: "15px"
 };
 
 const inputStyle = {
 width: "100%",
 padding: "10px",
-margin: "8px 0",
-borderRadius: "8px",
-border: "1px solid #ccc"
+margin: "8px 0"
 };
 
 const buttonStyle = {
-width: "100%",
-padding: "12px",
-background: "#1e3a8a",
+padding: "12px 20px",
+background: "#111",
 color: "white",
 border: "none",
-borderRadius: "10px",
+borderRadius: "8px",
 cursor: "pointer",
-transition: "0.3s"
+marginTop: "10px"
 };
 
 const ticketStyle = {
@@ -208,18 +230,14 @@ background: "white",
 width: "320px",
 margin: "15px auto",
 padding: "15px",
-borderRadius: "12px",
-boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-transition: "0.3s"
+borderRadius: "10px"
 };
 
 const deleteStyle = {
 background: "red",
 color: "white",
 padding: "8px",
-border: "none",
-borderRadius: "6px",
-cursor: "pointer"
+border: "none"
 };
 
 export default App;
