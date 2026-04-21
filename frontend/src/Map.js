@@ -33,28 +33,28 @@ return null;
 function Map({ selectedRoute }) {
 
 const allStations = [
-{ name: "PMA", coords: [16.421300, 120.620700] },
-{ name: "T.I", coords: [16.416000, 120.611000] },
-{ name: "Camp John Hay", coords: [16.397265, 120.611316] },
-{ name: "Nevada Square", coords: [16.403326, 120.605340] },
-{ name: "Victory Liner", coords: [16.405713, 120.602605] },
-{ name: "SM Baguio", coords: [16.409078, 120.599780] },
-{ name: "Baguio Harrison", coords: [16.409828, 120.597144] },
-{ name: "Teacher's Camp", coords: [16.412115, 120.606364] },
-{ name: "Botanical Garden", coords: [16.415168, 120.612919] },
-{ name: "Wright Park", coords: [16.424900, 120.616000] },
-{ name: "Mirador Heritage Park", coords: [16.410222, 120.579728] },
-{ name: "Diplomat Hotel", coords: [16.404089, 120.586653] },
-{ name: "Stobosa", coords: [16.455600, 120.586300] },
-{ name: "Strawberry Farm", coords: [16.460800, 120.580600] },
-{ name: "La Trinidad", coords: [16.448063, 120.591286] },
-{ name: "Wangal Sports Complex", coords: [16.456163, 120.572805] },
-{ name: "Mt. Kalugong", coords: [16.460582, 120.596181] },
-{ name: "Alapo Adventure Camp", coords: [16.451014, 120.570062] },
-{ name: "Japanese Trail", coords: [16.449894, 120.570767] },
-{ name: "Mt. Costa", coords: [16.443231, 120.552248] },
-{ name: "Dragon Treasure", coords: [16.422068, 120.566452] },
-{ name: "Skyland", coords: [16.411139, 120.562472] }
+ { name: "PMA", coords: [16.421300, 120.620700] }, // main gate
+  { name: "T.I", coords: [16.416050, 120.611200] },
+  { name: "Camp John Hay", coords: [16.399200, 120.620600] }, // entrance road
+  { name: "Nevada Square", coords: [16.402600, 120.601100] },
+  { name: "Victory Liner", coords: [16.410700, 120.595900] }, // terminal entrance
+  { name: "SM Baguio", coords: [16.409100, 120.599400] }, // main entrance
+  { name: "Baguio Harrison", coords: [16.412600, 120.596400] },
+  { name: "Teacher's Camp", coords: [16.416700, 120.603200] }, // gate
+  { name: "Botanical Garden", coords: [16.421200, 120.610800] }, // entrance
+  { name: "Wright Park", coords: [16.425100, 120.616000] }, // horse area entrance
+  { name: "Mirador Heritage Park", coords: [16.400500, 120.580600] }, // entrance road
+  { name: "Diplomat Hotel", coords: [16.395200, 120.585900] },
+  { name: "Stobosa", coords: [16.455800, 120.586400] }, // main viewing road
+  { name: "Strawberry Farm", coords: [16.461100, 120.580700] }, // entrance
+  { name: "La Trinidad", coords: [16.456100, 120.587500] }, // town center road
+  { name: "Wangal Sports Complex", coords: [16.480600, 120.593300] },
+  { name: "Mt. Kalugong", coords: [16.471200, 120.600900] }, // entrance
+  { name: "Alapo Adventure Camp", coords: [16.466300, 120.606200] },
+  { name: "Japanese Trail", coords: [16.460500, 120.611000] },
+  { name: "Mt. Costa", coords: [16.470900, 120.621200] }, // gate
+  { name: "Dragon Treasure", coords: [16.476000, 120.626000] },
+  { name: "Skyland", coords: [16.481400, 120.630600] }
 ];
 
 const startStation = allStations.find(s => s.name === selectedRoute.start);
