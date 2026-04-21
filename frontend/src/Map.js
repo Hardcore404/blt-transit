@@ -33,7 +33,7 @@ function Map({ selectedRoute, setStart, setEnd }) {
   { name: "Mirador Heritage Park", coords: [16.41022205290084, 120.57972822386763] },
   { name: "Diplomat Hotel", coords: [16.404089888285434, 120.58665359982602] },
   { name: "Stobosa", coords: [16.43449528485326, 120.5972096815392] },
-  { name: "Strawberry Farm", coords: [16.458805045880087, 120.58765945327612] },
+  { name: "Strawberry Farm", coords: [16., 120.] },
   { name: "La Trinidad", coords: [16.448063211283184, 120.59128686525446] },
   { name: "Wangal Sports Complex", coords: [16.45616396795402, 120.57280520029283] },
   { name: "Mt. Kalugong", coords: [16.460582449514465, 120.59618175058161] },
