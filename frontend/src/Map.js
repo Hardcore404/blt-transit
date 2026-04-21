@@ -10,8 +10,8 @@ if (!start || !end) return;
 
 const routing = L.Routing.control({
   waypoints: [
-    L.latLng(start[0], start[1]),
-    L.latLng(end[0], end[1])
+  L.latLng(start[0] + 0.00015, start[1] + 0.00015),
+  L.latLng(end[0] + 0.00015, end[1] + 0.00015)
   ],
   routeWhileDragging: false,
   addWaypoints: false,
